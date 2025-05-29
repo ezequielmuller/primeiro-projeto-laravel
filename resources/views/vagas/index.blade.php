@@ -20,6 +20,7 @@
                                 <th>Descrição</th>
                                 <th>Usuário Cadastro</th>
                                 <th>Salario R$</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,7 @@
                                     <td>{{ $vaga->desc }}</td>
                                     <td>{{ $vaga->user_id }}</td>
                                     <td>{{ $vaga->salario }}</td>
+                                    <td><a href="{{ route('vagas.deletar', $vaga->id) }}">Deletar</a></td>
                                 </tr>
                             @endforeach
 

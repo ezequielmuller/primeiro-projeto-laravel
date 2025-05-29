@@ -39,6 +39,12 @@ class VagaController extends Controller
         $vaga->save();
 
         return Redirect::to("/vagas");
+    }
 
+    public function deletar($id) {
+        $vaga = Vaga::find($id);
+        $vaga->delete();
+
+        return Redirect::to("/vagas");
     }
 }
