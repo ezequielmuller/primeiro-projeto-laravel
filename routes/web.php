@@ -25,6 +25,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/vagas', [VagaController::class, 'store'])->name('vagas.store');
 
     Route::get('/vagas/delete/{vaga}', [VagaController::class, 'deletar'])->name('vagas.deletar');
+    Route::get('/vagas/{vaga}', [VagaController::class, 'show'])->name('vagas.show');
+
+    Route::get('/vagas/{vaga}/edit', [VagaController::class, 'edit'])->name('vagas.edit');
+    Route::put('/vagas/{vaga}', [VagaController::class, 'update'])->name('vagas.update');
+
 
     //Rotas Usuário
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

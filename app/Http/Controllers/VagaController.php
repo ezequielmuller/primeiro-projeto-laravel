@@ -17,10 +17,13 @@ class VagaController extends Controller
         $vagas = Vaga::get();
         return view('vagas.index', ['vagas' => $vagas]);
     }
+
+    // Cadastrar Vaga
     public function create()
     {
-        return view('vagas.add');
+        return view(view: 'vagas.add');
     }
+
 
     public function store(Request $request)
     {
@@ -41,10 +44,45 @@ class VagaController extends Controller
         return Redirect::to("/vagas");
     }
 
-    public function deletar($id) {
+    //Deletar Vaga
+    public function deletar($id)
+    {
         $vaga = Vaga::find($id);
         $vaga->delete();
 
         return Redirect::to("/vagas");
+    }
+
+    // Ver Vaga
+    public function show($id)
+    {
+
+        $vaga = Vaga::find($id);
+
+        return view('vagas.show', ['vaga' => $vaga]);
+    }
+
+    // Alterar Vaga
+    public function edit($id)
+    {
+        $vaga = Vaga::find($id);
+
+        return view('vagas.edit', ['vaga' => $vaga]);
+    }
+
+    public function update(Request $request, $id){
+        $vaga = Vaga::find($id);
+        $dados = $request->all();
+
+        $vaga->nome = $dados['nome'];
+        $vaga->desc = $dados['desc'];
+        $vaga->nome = floatval($dados['salario']);
+
+        $vaga->img = "";
+        $vaga->user_id = Auth::user()->id;
+        $vaga->categoria_id = 1;
+        $vaga->update();
+
+        return Redirect::to("/vagas/$id");
     }
 }
